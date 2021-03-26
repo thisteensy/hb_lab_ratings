@@ -47,10 +47,20 @@ def create_rating(user, movie, score):
 
     return new_rating
 
+def get_users():
+    """ return a list of all users"""
+    
+    return User.query.all()
+
+def show_user_profile(user_id):
+    """return user's profile"""
+
+    return User.query.get(user_id)
 
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+
 
 # db.create_all()
 

@@ -30,14 +30,27 @@ def all_movies():
 
 @app.route('/movies/<movie_id>')
 def show_movie(movie_id):
-    """Get movie by ID"""
+    """get movie by id"""
 
     movie = crud.get_movie_by_id(movie_id)
 
     return render_template("movie_details.html", movie=movie)
 
-# @app.route('/users')
-# pass
+@app.route('/users')
+def show_all_users():
+    """get user profile"""
+    
+    users = crud.get_users()
+    
+    return render_template("all_users.html", users=users)
+
+@app.route('/users/<user_id>')
+def user_profile(user_id):
+    """display user profile"""
+
+    user = crud.show_user_profile(user_id)
+
+    return render_template("user_profile.html", user=user)
 
 if __name__ == '__main__':
     connect_to_db(app)

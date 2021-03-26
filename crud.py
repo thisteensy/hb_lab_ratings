@@ -45,5 +45,5 @@ if __name__ == '__main__':
 
 # db.create_all()
 
-user_jane = create_user()
-create_rating(user = create_user(), movie='Amelie', score=5) 
+# user_jane = create_user()
+# create_rating(user = create_user(), movie='Amelie', score=5) 

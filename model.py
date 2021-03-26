@@ -29,7 +29,7 @@ class Movie(db.Model):
     movie_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    title = db.Column(db.String(50), unique=True)
+    title = db.Column(db.String(70), unique=True)
     overview = db.Column(db.Text)
     release_date = db.Column(db.DateTime)
     poster_path = db.Column(db.String)
@@ -81,6 +81,6 @@ if __name__ == '__main__':
     connect_to_db(app)
 
 
-    #db.create_all()
+    
 
 

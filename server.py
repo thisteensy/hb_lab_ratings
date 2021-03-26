@@ -17,14 +17,27 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
     """view homepage"""
+
     return render_template('homepage.html')
 
 @app.route('/movies')
 def all_movies():    
+    """getting all movies"""
+
     movies = crud.get_movies()
 
     return render_template('all_movies.html', movies=movies)
 
+@app.route('/movies/<movie_id>')
+def show_movie(movie_id):
+    """Get movie by ID"""
+
+    movie = crud.get_movie_by_id(movie_id)
+
+    return render_template("movie_details.html", movie=movie)
+
+# @app.route('/users')
+# pass
 
 if __name__ == '__main__':
     connect_to_db(app)

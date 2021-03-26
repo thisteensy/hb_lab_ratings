@@ -52,6 +52,11 @@ def get_users():
     
     return User.query.all()
 
+def get_user_by_email(email):
+    """get user by email"""
+
+    return User.query.filter(User.email == email).first()
+
 def show_user_profile(user_id):
     """return user's profile"""
 

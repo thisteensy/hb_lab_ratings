@@ -52,6 +52,39 @@ def user_profile(user_id):
 
     return render_template("user_profile.html", user=user)
 
+@app.route('/users', methods=['POST'])
+def register_user():
+    """create a new user"""
+
+    email = request.form.get('email')
+    password =  request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash('Cannot create an account with that email. Try again.')
+    else: 
+        crud.create_user(email, password)
+        flash('Account created! Please log in.')
+    
+    return redirect('/')
+
+@app.route('/login', methods=['POST'])
+def login_user():
+    """add and check for user login"""
+
+    email = request.form['email']
+    password = request.form['password']
+
+    user = crud.get_user_by_email(email)
+
+    if user:
+        if password == user.password:
+            flash("You've logged in!")
+            return redirect('/')
+        else:
+            flash("Incorrect password. Try again.")
+            return redirect('/')
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
